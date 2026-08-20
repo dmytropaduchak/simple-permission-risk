@@ -1,0 +1,22 @@
+name: Simple Permission Risk
+description: Warn on overly broad GitHub Actions workflow permissions (write-all, missing permissions).
+author: Dmytro Paduchak
+branding:
+  icon: shield
+  color: purple
+inputs:
+  github-token:
+    description: Token used to post sticky PR comments.
+    required: false
+    default: ${{ github.token }}
+  fail-on:
+    description: "none = report only; medium or high = fail the job when findings match that severity."
+    required: false
+    default: none
+  workflow-path:
+    description: Directory that contains workflow YAML files.
+    required: false
+    default: .github/workflows
+runs:
+  using: node20
+  main: dist/index.js
